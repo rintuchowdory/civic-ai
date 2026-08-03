@@ -1,7 +1,8 @@
 import Topbar from "@/components/Topbar";
+import BriefUpload from "@/components/BriefUpload";
 import { briefe } from "@/lib/mock-data";
 import { formatDate } from "@/lib/status";
-import { UploadCloud, FileText, AlertCircle } from "lucide-react";
+import { FileText, AlertCircle } from "lucide-react";
 
 const dringlichkeitMeta = {
   hoch: { label: "Hohe Dringlichkeit", color: "#C2453A" },
@@ -14,18 +15,7 @@ export default function BriefePage() {
     <>
       <Topbar kicker="AZ-01 · Dokumentenanalyse" title="Briefe analysieren" />
       <main className="px-5 lg:px-8 py-6 space-y-6">
-        <section className="akte-card border-dashed p-8 flex flex-col items-center justify-center text-center gap-3">
-          <div className="p-3 rounded-full bg-amtsblau/15">
-            <UploadCloud size={22} className="text-amtsblau-bright" />
-          </div>
-          <p className="font-display text-lg text-paper">Behördenbrief hochladen</p>
-          <p className="text-sm text-paper/55 max-w-md">
-            PDF oder Foto eines Briefs hochladen. CivicAI liest den Text per OCR, erkennt Absender,
-            Fristen und Kernaussagen — auch bei Amtsdeutsch.
-          </p>
-          <button className="btn-primary text-sm mt-2">Datei auswählen</button>
-          <p className="aktenzeichen">PDF, JPG, PNG · max. 15 MB</p>
-        </section>
+        <BriefUpload />
 
         <section>
           <p className="label-eyebrow mb-3">Bereits analysiert</p>
@@ -61,7 +51,7 @@ export default function BriefePage() {
 
         <section className="akte-card p-5 flex items-start gap-3">
           <AlertCircle size={17} className="text-akte-gold mt-0.5 shrink-0" />
-          <p className="text-xs text-paper/55">
+          <p className="text-xs text-paper/60">
             CivicAI ersetzt keine Rechtsberatung. Bei komplexen Bescheiden empfehlen wir, zusätzlich
             eine Verbraucherzentrale oder Fachanwältin zu kontaktieren.
           </p>
