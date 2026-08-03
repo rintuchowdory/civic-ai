@@ -5,6 +5,12 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  corePlugins: {
+    // Tailwind preflight injects a prefixed `-webkit-text-size-adjust`
+    // declaration that Firefox warns about. We provide a small local reset
+    // in app/globals.css instead.
+    preflight: false,
+  },
   theme: {
     extend: {
       colors: {
