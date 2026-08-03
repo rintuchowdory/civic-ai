@@ -52,3 +52,5 @@ App läuft unter `http://localhost:3000`.
 
 CivicAI ersetzt keine Rechtsberatung. Bei komplexen Fällen empfiehlt die App den Kontakt zu
 Verbraucherzentralen, Migrationsberatung oder Fachanwält:innen.
+
+<!-- Trigger Vercel production redeploy for latest main branch changes. -->
