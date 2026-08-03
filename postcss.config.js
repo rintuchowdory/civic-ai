@@ -8,9 +8,9 @@ const removeUnsupportedWebkitTextSizeAdjust = {
 };
 
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-    "remove-unsupported-webkit-text-size-adjust": removeUnsupportedWebkitTextSizeAdjust,
-  },
+  plugins: [
+    require("tailwindcss"),
+    require("autoprefixer"),
+    removeUnsupportedWebkitTextSizeAdjust,
+  ],
 };
