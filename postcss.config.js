@@ -1,16 +1,6 @@
-const removeUnsupportedWebkitTextSizeAdjust = {
-  postcssPlugin: "remove-unsupported-webkit-text-size-adjust",
-  Declaration(decl) {
-    if (decl.prop === "-webkit-text-size-adjust") {
-      decl.remove();
-    }
-  },
-};
-
 module.exports = {
-  plugins: [
-    require("tailwindcss"),
-    require("autoprefixer"),
-    removeUnsupportedWebkitTextSizeAdjust,
-  ],
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
 };
