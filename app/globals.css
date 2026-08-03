@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #131E33;
+}
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: #F1E9D3;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(49, 89, 199, 0.18), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(194, 69, 58, 0.10), transparent 55%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: #3159C7;
+  color: #F1E9D3;
+}
+
+/* visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid #C9A66B;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Reusable design-system classes ---- */
+
+.akte-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(241,233,211,0.05), rgba(241,233,211,0.02));
+  border: 1px solid rgba(241, 233, 211, 0.10);
+  border-radius: 2px;
+  backdrop-filter: blur(6px);
+}
+
+.akte-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  width: 34px;
+  height: 6px;
+  background: rgba(201, 166, 107, 0.55);
+  border-radius: 0 0 2px 2px;
+}
+
+.aktenzeichen {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(241, 233, 211, 0.45);
+  text-transform: uppercase;
+}
+
+.label-eyebrow {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(241, 233, 211, 0.55);
+}
+
+.hairline {
+  border-color: rgba(241, 233, 211, 0.1);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #3159C7;
+  color: #F1E9D3;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.6rem 1.1rem;
+  border-radius: 2px;
+  border: 1px solid #5C82E8;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.btn-primary:hover {
+  background: #3E68DA;
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #F1E9D3;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.6rem 1.1rem;
+  border-radius: 2px;
+  border: 1px solid rgba(241, 233, 211, 0.25);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.btn-secondary:hover {
+  border-color: rgba(241, 233, 211, 0.55);
+  background: rgba(241, 233, 211, 0.04);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(241, 233, 211, 0.18);
+  border-radius: 999px;
+}
