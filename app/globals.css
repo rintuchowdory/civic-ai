@@ -8,26 +8,37 @@
 
 html,
 body {
-  background-color: #131E33;
+  background-color: #101a2d;
 }
 
 body {
   font-family: "IBM Plex Sans", sans-serif;
-  color: #F1E9D3;
+  color: #f1e9d3;
   background-image:
-    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(49, 89, 199, 0.18), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(194, 69, 58, 0.10), transparent 55%);
+    radial-gradient(ellipse 900px 520px at 12% -8%, rgba(49, 89, 199, 0.24), transparent 62%),
+    radial-gradient(ellipse 760px 520px at 96% 2%, rgba(201, 166, 107, 0.12), transparent 58%),
+    linear-gradient(180deg, #131e33 0%, #101a2d 100%);
   background-attachment: fixed;
 }
 
-::selection {
-  background: #3159C7;
-  color: #F1E9D3;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  z-index: -1;
 }
 
-/* visible keyboard focus everywhere */
+::selection {
+  background: #3159c7;
+  color: #f1e9d3;
+}
+
 :focus-visible {
-  outline: 2px solid #C9A66B;
+  outline: 2px solid #c9a66b;
   outline-offset: 2px;
 }
 
@@ -42,14 +53,33 @@ body {
   }
 }
 
+/* Improve low-opacity utility text on the dark background. */
+.text-paper\/30,
+.text-paper\/35,
+.text-paper\/40,
+.text-paper\/45 {
+  color: rgba(241, 233, 211, 0.58) !important;
+}
+
+.text-paper\/55,
+.text-paper\/60 {
+  color: rgba(241, 233, 211, 0.72) !important;
+}
+
 /* ---- Reusable design-system classes ---- */
 
 .akte-card {
   position: relative;
-  background: linear-gradient(180deg, rgba(241,233,211,0.05), rgba(241,233,211,0.02));
-  border: 1px solid rgba(241, 233, 211, 0.10);
-  border-radius: 2px;
-  backdrop-filter: blur(6px);
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(201, 166, 107, 0.07), transparent 30%),
+    linear-gradient(180deg, rgba(241, 233, 211, 0.075), rgba(241, 233, 211, 0.035));
+  border: 1px solid rgba(241, 233, 211, 0.16);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.025) inset,
+    0 18px 48px -30px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
 }
 
 .akte-card::before {
@@ -59,15 +89,20 @@ body {
   left: 18px;
   width: 34px;
   height: 6px;
-  background: rgba(201, 166, 107, 0.55);
+  background: rgba(201, 166, 107, 0.72);
+  box-shadow: 0 0 18px rgba(201, 166, 107, 0.16);
   border-radius: 0 0 2px 2px;
+}
+
+.akte-card:hover {
+  border-color: rgba(241, 233, 211, 0.21);
 }
 
 .aktenzeichen {
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.08em;
-  color: rgba(241, 233, 211, 0.45);
+  color: rgba(241, 233, 211, 0.62);
   text-transform: uppercase;
 }
 
@@ -77,29 +112,29 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 11px;
-  color: rgba(241, 233, 211, 0.55);
+  color: rgba(241, 233, 211, 0.7);
 }
 
 .hairline {
-  border-color: rgba(241, 233, 211, 0.1);
+  border-color: rgba(241, 233, 211, 0.15);
 }
 
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #3159C7;
-  color: #F1E9D3;
+  background: #3159c7;
+  color: #f1e9d3;
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
   padding: 0.6rem 1.1rem;
   border-radius: 2px;
-  border: 1px solid #5C82E8;
+  border: 1px solid #5c82e8;
   transition: background-color 0.15s ease, transform 0.15s ease;
 }
 .btn-primary:hover {
-  background: #3E68DA;
+  background: #3e68da;
 }
 .btn-primary:active {
   transform: translateY(1px);
@@ -109,19 +144,19 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: transparent;
-  color: #F1E9D3;
+  background: rgba(241, 233, 211, 0.015);
+  color: #f1e9d3;
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
   padding: 0.6rem 1.1rem;
   border-radius: 2px;
-  border: 1px solid rgba(241, 233, 211, 0.25);
+  border: 1px solid rgba(241, 233, 211, 0.32);
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 .btn-secondary:hover {
-  border-color: rgba(241, 233, 211, 0.55);
-  background: rgba(241, 233, 211, 0.04);
+  border-color: rgba(241, 233, 211, 0.62);
+  background: rgba(241, 233, 211, 0.06);
 }
 
 .status-pill {
@@ -134,12 +169,24 @@ body {
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
   border: 1px solid currentColor;
+  background: rgba(16, 26, 45, 0.45);
 }
 
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(241, 233, 211, 0.18);
+  background: rgba(241, 233, 211, 0.25);
   border-radius: 999px;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .akte-card {
+    backdrop-filter: blur(5px);
+    box-shadow: 0 14px 36px -30px rgba(0, 0, 0, 0.95);
+  }
 }
