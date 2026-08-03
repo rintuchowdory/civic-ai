@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, RoundedBox, Text, Ring } from "@react-three/drei";
+import { Html, OrbitControls, Ring, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 import { vorgaenge } from "@/lib/mock-data";
 
@@ -49,26 +49,39 @@ function FileCard({
         <boxGeometry args={[0.9, 0.14, 0.005]} />
         <meshStandardMaterial color={color} roughness={0.5} />
       </mesh>
-      <Text
-        position={[0, -0.3, 0.03]}
-        fontSize={0.09}
-        color="#131E33"
-        anchorX="center"
-        anchorY="middle"
-        font={undefined}
+      <Html
+        transform
+        position={[0, -0.3, 0.031]}
+        distanceFactor={5.2}
+        style={{ pointerEvents: "none", backfaceVisibility: "hidden" }}
       >
-        {aktenzeichen}
-      </Text>
+        <span
+          style={{
+            display: "block",
+            width: "118px",
+            textAlign: "center",
+            color: "#131E33",
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: "12px",
+            lineHeight: 1,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {aktenzeichen}
+        </span>
+      </Html>
     </group>
   );
 }
 
 function Core() {
   const ring = useRef<THREE.Group>(null);
+
   useFrame((state) => {
     if (!ring.current) return;
     ring.current.rotation.z = state.clock.getElapsedTime() * 0.08;
   });
+
   return (
     <group ref={ring}>
       <Ring args={[1.55, 1.6, 64]} rotation={[Math.PI / 2, 0, 0]}>
@@ -83,14 +96,26 @@ function Core() {
 
 export default function AktenOrbitScene() {
   const cards = useMemo(() => vorgaenge, []);
+
   return (
-    <Canvas camera={{ position: [0, 1.6, 5.4], fov: 42 }} dpr={[1, 1.5]}>
+    <Canvas
+      camera={{ position: [0, 1.6, 5.4], fov: 42 }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: true, powerPreference: "high-performance" }}
+      resize={{ scroll: false, debounce: { scroll: 0, resize: 50 } }}
+    >
       <ambientLight intensity={0.55} />
       <directionalLight position={[3, 4, 2]} intensity={1.1} color="#F1E9D3" />
       <pointLight position={[-3, -2, -2]} intensity={0.4} color="#5C82E8" />
       <Core />
       {cards.map((v, i) => (
-        <FileCard key={v.id} index={i} total={cards.length} aktenzeichen={v.aktenzeichen} status={v.status} />
+        <FileCard
+          key={v.id}
+          index={i}
+          total={cards.length}
+          aktenzeichen={v.aktenzeichen}
+          status={v.status}
+        />
       ))}
       <OrbitControls
         enableZoom={false}
